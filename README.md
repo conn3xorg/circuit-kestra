@@ -104,7 +104,7 @@ Kestra ships as a Docker image and as a JAR. The image carries the Java runtime 
 
 The standalone server opens three ports: the web server on 8080, a management port on 8081, and since 2.0, a gRPC port on 50051 that its workers connect to. Kestra has no setting to bind that last one to one address, and its own authentication is off by default. On the host's network it would listen on every address. So the container stays on Podman's bridge network, and only the web server is published, on `listen_address`. The other two can't be reached from outside the container.
 
-The circuit uses the `-slim` image by default: Kestra with its core tasks, such as logging, HTTP requests, subflows, schedules and webhooks, at about 250 MB. The image without the suffix, such as `v2.0.9`, has every plugin, at several gigabytes. Set `kestra_version` and `image_digest` to that one if your flows need plugins, or install the ones you need with `kestra plugins install`.
+The circuit uses the `-slim` image by default: Kestra with its core tasks, such as logging, HTTP requests, subflows, schedules and webhooks, at about 250 MB. The image without the suffix, such as `v2.0.13`, has every plugin, at several gigabytes. Set `kestra_version` and `image_digest` to that one if your flows need plugins, or install the ones you need with `kestra plugins install`.
 
 ## What it does
 
@@ -157,8 +157,8 @@ Kestra's script tasks, such as Python or Shell scripts, start a Docker container
 | `postgres` | object | `null` | PostgreSQL to keep Kestra's data in: `host`, and optionally `port` (`5432`), `database` (`"kestra"`) and `username` (`"kestra"`). When null, H2 in `/var/lib/kestra/db`. |
 | `postgres_password` | string | `null` | Password of the PostgreSQL user. Needed with `postgres`. Ephemeral and sensitive. |
 | `environment` | map(string) | `{}` | More environment variables for Kestra. Kestra reads any setting from a variable named after it, such as `KESTRA_TASKS_TMPDIR_PATH`. Ephemeral and sensitive. `SECRET_` and `CONN3X_` names aren't allowed here. |
-| `kestra_version` | string | `"v2.0.9-slim"` | Tag of Kestra's image. Change `image_digest` with it. |
-| `image_digest` | string | `"sha256:3ee725f9..."` | Digest of the image for `kestra_version`. Podman pulls by the digest. Find it on [Docker Hub](https://hub.docker.com/r/kestra/kestra/tags) or with `skopeo inspect docker://docker.io/kestra/kestra:TAG`. |
+| `kestra_version` | string | `"v2.0.13-slim"` | Tag of Kestra's image. Change `image_digest` with it. |
+| `image_digest` | string | `"sha256:6f4a6223..."` | Digest of the image for `kestra_version`. Podman pulls by the digest. Find it on [Docker Hub](https://hub.docker.com/r/kestra/kestra/tags) or with `skopeo inspect docker://docker.io/kestra/kestra:TAG`. |
 | `image_repository` | string | `"docker.io/kestra/kestra"` | Where to pull the image from, such as a mirror of Docker Hub. |
 | `listen_address` | string | `"127.0.0.1"` | Host address the web server is published on. `"0.0.0.0"` publishes it on every address. |
 | `port` | number | `8080` | Host port the web server is published on. |

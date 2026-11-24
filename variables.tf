@@ -36,21 +36,21 @@ variable "ssh_become" {
 
 variable "kestra_version" {
   type        = string
-  default     = "v2.0.9-slim"
+  default     = "v2.0.13-slim"
   nullable    = false
-  description = "Tag of the Kestra image, such as \"v2.0.9-slim\", Kestra with its core tasks only, or \"v2.0.9\", with every plugin. Change image_digest with it."
+  description = "Tag of the Kestra image, such as \"v2.0.13-slim\", Kestra with its core tasks only, or \"v2.0.13\", with every plugin. Change image_digest with it."
 
   validation {
     condition     = can(regex("^[A-Za-z0-9_][A-Za-z0-9_.-]*$", var.kestra_version))
-    error_message = "kestra_version must be an image tag, such as \"v2.0.9-slim\"."
+    error_message = "kestra_version must be an image tag, such as \"v2.0.13-slim\"."
   }
 }
 
 variable "image_digest" {
   type        = string
-  default     = "sha256:3ee725f92e7aba3d8f11242a6b2a773702e0315ba472d4049a5e56441e9aed84"
+  default     = "sha256:6f4a6223108c3d94172a1d13997dbf8fbbd11d4cbc02e4e028b4445bb6a2f57b"
   nullable    = false
-  description = "Digest of the image for kestra_version, such as \"sha256:3ee7...\". Podman pulls by the digest, so a tag that moves upstream can't change what runs."
+  description = "Digest of the image for kestra_version, such as \"sha256:6f4a...\". Podman pulls by the digest, so a tag that moves upstream can't change what runs."
 
   validation {
     condition     = can(regex("^sha256:[a-f0-9]{64}$", var.image_digest))
