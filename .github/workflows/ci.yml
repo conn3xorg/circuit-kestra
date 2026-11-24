@@ -68,11 +68,11 @@ jobs:
         run: ./up.sh
       # The first apply runs the release before, so the second one is an
       # upgrade: Kestra migrates its H2 database as the new image starts.
-      - name: Apply v2.0.8-slim, then upgrade to the default release
+      - name: Apply v2.0.9-slim, then upgrade to the default release
         working-directory: examples/local
         run: |
           conn3x init
-          conn3x apply -auto-approve -var kestra_version=v2.0.8-slim -var image_digest=sha256:d7bb1af55f4b5730247e5c8c852e2c912ccd36a58c7846ac96d2d749295ba365
+          conn3x apply -auto-approve -var kestra_version=v2.0.9-slim -var image_digest=sha256:3ee725f92e7aba3d8f11242a6b2a773702e0315ba472d4049a5e56441e9aed84
           conn3x apply -auto-approve
       - name: Plan again with no changes
         working-directory: examples/local
