@@ -139,10 +139,12 @@ circuit "kestra" {
   }
 
   # Kestra reads its config only as it starts. Before the first start
-  # there's nothing to restart.
+  # there's nothing to restart: try-restart leaves a unit that isn't
+  # installed or isn't running alone.
   step "restart" {
-    command {
-      command  = "! systemctl cat kestra.service >/dev/null 2>&1 || systemctl try-restart kestra.service"
+    service_action {
+      name     = "kestra"
+      action   = "try-restart"
       triggers = { config = conn3x_file.kestra__config[each.key].sha256 }
     }
   }
@@ -155,7 +157,7 @@ circuit "kestra" {
 module "podman" {
   source = "github.com/conn3xorg/circuit-podman?ref=v0.1.1"
 
-  depends_on = [conn3x_command.kestra__restart]
+  depends_on = [conn3x_service_action.kestra__restart]
 
   hosts                = var.hosts
   ssh_user             = var.ssh_user
