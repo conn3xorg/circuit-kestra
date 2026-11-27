@@ -24,7 +24,7 @@ variable "github_token" {
 }
 
 module "kestra" {
-  source = "github.com/conn3xorg/circuit-kestra?ref=v0.1.1"
+  source = "github.com/conn3xorg/circuit-kestra?ref=v0.2.0"
 
   hosts                = { orchestrator = "192.168.1.60" }
   ssh_private_key_file = "~/.ssh/id_ed25519"
@@ -76,7 +76,7 @@ H2 suits one person trying things out. Kestra's own advice is PostgreSQL for any
 
 ```hcl
 module "kestra" {
-  source = "github.com/conn3xorg/circuit-kestra?ref=v0.1.1"
+  source = "github.com/conn3xorg/circuit-kestra?ref=v0.2.0"
 
   hosts                = { orchestrator = "192.168.1.60" }
   ssh_private_key_file = "~/.ssh/id_ed25519"
@@ -174,7 +174,7 @@ Kestra's script tasks, such as Python or Shell scripts, start a Docker container
 
 ## Requirements
 
-Requires Conn3x v0.7.0 or later and systemd on each host. The image is built for amd64 and arm64. Each host needs to reach its package mirror and Docker Hub. `conn3x init` fetches circuit-podman from GitHub.
+Requires Conn3x v0.30.0 or later and systemd on each host. The image is built for amd64 and arm64. Each host needs to reach its package mirror and Docker Hub. `conn3x init` fetches circuit-podman from GitHub.
 
 ## Tested on
 
